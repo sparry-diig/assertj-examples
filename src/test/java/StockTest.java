@@ -16,8 +16,8 @@ public class StockTest {
         //JUnit assertions
         Assert.assertNotNull(google);
         Assert.assertEquals("APPL", google.getSymbol());
-        Assert.assertEquals("Oracle Inc", google.getName());
-        Assert.assertEquals("GBP", google.getCurrency());
+        Assert.assertEquals("Google Inc", google.getName());
+        Assert.assertEquals("USD", google.getCurrency());
         Assert.assertEquals("NASDEQ", google.getMarket());
     }
 
@@ -28,18 +28,18 @@ public class StockTest {
         SoftAssertions sa = new SoftAssertions();
         sa.assertThat(google).isNotNull()
                              .hasFieldOrPropertyWithValue("symbol", "APPL")
-                             .hasFieldOrPropertyWithValue("name", "Oracle Inc")
-                             .hasFieldOrPropertyWithValue("currency", "GBP")
+                             .hasFieldOrPropertyWithValue("name", "Google Inc")
+                             .hasFieldOrPropertyWithValue("currency", "USD")
                              .hasFieldOrPropertyWithValue("market", "NASDEQ");
         sa.assertAll();
     }
 
     @Test
     public void testBasicStockWithAssertJCustomAssertions() {
-        Stock google = Stock.createUSStock("GOOG", "Google Inc");
+        Stock google = Stock.createUSStock("GOOG", "Google Inc.");
         StockSoftAssertions sa = new StockSoftAssertions();
-        sa.assertThat(google).hasName("Oracle Inc.").hasSymbol("APPL").hasCurrency("GBP").hasMarket("NASDEQ");
-        sa.assertThat(google).hasName("Apple Inc.").hasSymbol("ORCL").hasCurrency("EUR").hasMarket("NIPPON");
+        sa.assertThat(google).hasName("Oracle Inc.").hasSymbol("APPL").hasCurrency("USD").hasMarket("NYSE");
+        sa.assertThat(google).hasName("Google Inc.").hasSymbol("GOOG").hasCurrency("EUR").hasMarket("NIPPON");
         sa.assertAll();
     }
 }
